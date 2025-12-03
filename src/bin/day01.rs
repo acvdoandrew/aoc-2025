@@ -6,10 +6,27 @@ fn main() {
     println!("Part 2: {}", part2(&input));
 
     fn part1(input: &str) -> i64 {
-        todo!();
+        let mut position = 50;
+        let mut count = 0;
+
+        for line in input.lines() {
+            let instruction = line.chars().next().expect("Not a character");
+            let change: i64 = line[1..].parse().expect("Not a number");
+
+            if instruction == 'R' {
+                position = (position + change).rem_euclid(100);
+            } else {
+                position = (position - change).rem_euclid(100);
+            }
+
+            if position == 0 {
+                count += 1;
+            }
+        }
+        count
     }
 
     fn part2(input: &str) -> i64 {
-        todo!();
+        0
     }
 }
